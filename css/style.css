@@ -6,4 +6,5 @@
 
 #map {
     height: 60vW;
+    max-height: 90vh;
 }
