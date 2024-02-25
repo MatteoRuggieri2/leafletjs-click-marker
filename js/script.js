@@ -1,3 +1,7 @@
+// DOM Elements
+const latDomElement = document.getElementById('lat-value');
+const lngDomElement = document.getElementById('lng-value');
+
 // Italy Center
 const itaCenterLat = 42.6824;
 const itaCenterLng = 12.7880;
@@ -33,6 +37,16 @@ map.on('click', onMapClick);
         FUNCTIONS
 ---------------------- */
 
+/* 
+Questa funzione viene eseguita al click sulla mappa.
+
+Arguments:
+e -> [Object]: Oggetto dell'evento scatenato
+
+Actions:
+- Aggiunge un marker dove è avvenuto il click
+- Chiama la funzione "writeCoordinatesOnPage()"
+*/
 function onMapClick(e) {
     
     // Prendo le coordinate cliccate
@@ -44,4 +58,28 @@ function onMapClick(e) {
 
     // Metto il nuovo marker
     marker = L.marker([clickedLat, clickedLng]).addTo(map);
+
+    // Scrivo le coordinate in pagina
+    writeCoordinatesOnPage(latDomElement, clickedLat, lngDomElement, clickedLng);
+}
+
+
+/*
+Questa funzione viene eseguita al richiamo.
+
+Argumets:
+latElement -> [DOM Element]: Elemento del DOM
+lat -> [Int/Float]: Coordinata (latitudine)
+lngElement -> [DOM Element]: Elemento del DOM
+lng -> [Int/Float]: Coordinata (longitudine)
+
+Actions:
+- Scrive dentro i DOM Elements forniti le coordinate
+*/
+function writeCoordinatesOnPage(latElement, lat, lngElement, lng) {
+    // Scrivo LAT
+    latElement.innerText = ` ${lat}`;
+
+    // Scrivo LNG
+    lngElement.innerText = ` ${lng}`;
 }
